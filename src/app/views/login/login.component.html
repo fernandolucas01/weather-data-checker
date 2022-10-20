@@ -1,0 +1,23 @@
+<div class="main-login">
+  <form class="login-container" [formGroup]="loginForm" (ngSubmit)="submit()" #formDir="ngForm">
+    <h1>LOGIN</h1>
+    <div class="textfield">
+      <label for="username">User</label>
+      <input type="text" id="username" placeholder="User" formControlName="username" required>
+      <div *ngIf="username.invalid && formDir.submitted && username.errors?.['required']" class="validation-error">
+        <p>User is required</p>
+      </div>
+    </div>
+    <div class="textfield">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Password" formControlName="password" required >
+      <div *ngIf="password.invalid && formDir.submitted && password.errors?.['required']" class="validation-error">
+        <p>Password is required</p>
+      </div>
+    </div>
+    <button class="btn-login">LOGIN</button>
+    <div *ngIf="formDir.submitted && !userIsValid && username.valid && password.valid" class="validation-error">
+      <p>Incorrect username or password!</p>
+    </div>
+  </form>
+</div>

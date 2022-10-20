@@ -1,0 +1,47 @@
+<div class="weather-data-background">
+  <div class="city-finder">
+    <div class="city-input">
+      <input
+        type="text"
+        placeholder="City"
+        [(ngModel)]="city"
+        (keyup.enter)="findWeatherData()"
+      >
+      <button (click)="findWeatherData()">SEARCH</button>
+    </div>
+    <div *ngIf="weatherNotFoundErr" class="validation-error">
+      <p>Weather data not found!</p>
+    </div>
+  </div>
+
+  <div class="weather-data">
+    <mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
+    <div  *ngIf="weatherData && !loading">
+      <div class="weather-main">
+        <p><b>{{ weatherData.name }}</b></p>
+        <p><b></b> {{ weatherData.main.temp - 273 | number: '1.0-0' }} ºC</p>
+      </div>
+
+      <div class="weather-info">
+        <p>
+          <img src="../../../assets/min-temp.svg">
+          <b>Min:</b> {{ weatherData.main.temp_min - 273 | number: '1.0-0' }} ºC
+        </p>
+        <p>
+          <img src="../../../assets/max-temp.svg">
+          <b>Max:</b> {{ weatherData.main.temp_max - 273 | number: '1.0-0' }} ºC
+        </p>
+        <p>
+          <img src="../../../assets/humidity.svg">
+          <b>Humidity:</b> {{weatherData.main.humidity }}%
+        </p>
+        <p>
+          <img src="../../../assets/wind.svg">
+          <b>Wind:</b> {{ weatherData.wind.speed * 3.6 | number: '1.0-0' }} km/h
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</div>
