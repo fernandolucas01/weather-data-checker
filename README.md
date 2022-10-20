@@ -40,3 +40,4 @@ For run the project use the following command:
 ```bash
 npm start
 ```
+The application will be running on localhost on port 4200!
